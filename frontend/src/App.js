@@ -10,10 +10,10 @@ function App() {
   useEffect(() => {
     const fetchPrayerData = async () => {
       const data = await fetchPrayerTimes();
-      setPrayerTimes(data.data.timings);
+      setPrayerTimes(data);
     };
     fetchPrayerData();
-    const intervalId = setInterval(fetchPrayerData, 12 * 60 * 60 * 1000);
+    const intervalId = setInterval(fetchPrayerData, 10 * 10 * 1000);
     return () => clearInterval(intervalId);
   }, []);
   console.log(prayerTimes);

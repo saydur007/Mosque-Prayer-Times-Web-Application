@@ -1,3 +1,18 @@
 .table-fixed {
     table-layout: fixed;
   }
+
+  .blink {
+    color: yellow;
+    animation: blink 1s linear infinite;
+  }
+  
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .red {
+    background-color: red;
+  }

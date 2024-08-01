@@ -12,7 +12,7 @@ app.use(express.json());
 const db = require("./models");
 
 const today = new Date();
-const year = today.getFullYear();
+const year = today.getFullYear() + 1;
 const API_URL= `https://api.aladhan.com/v1/calendarByCity/${year}?city=Toronto&country=Canada&method=15`;
 const timecalc = require('./calculation');
 
@@ -102,6 +102,6 @@ db.sequelize.sync().then(()=> {
     console.log(`Server is running on port ${port}`);
     //fetchDataAndInsert();
     fetchDataAndInsertNew();
-console.log(timecalc.calculateIsha("10:31 EST"));
+
   });
 });

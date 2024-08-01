@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+body {
+  background-color: blue;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -37,9 +39,9 @@
   }
 }
 #scroll-container {
-  border: 3px solid black;
-  border-radius: 5px;
+ 
   overflow: hidden;
+  font-size: 20px;;
 }
 
 #scroll-text {

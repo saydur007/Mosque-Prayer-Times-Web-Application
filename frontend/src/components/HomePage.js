@@ -1,80 +1,120 @@
 import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import '../styles/HomePage.css'
+import '../styles/HomePage.css';
+import dclogo from './dc.png';
 
-function HomePage({ prayerTimes }) {
-  const [isNearPrayerTime, setIsNearPrayerTime] = useState([]);
-  const [isPrayerTime, setIsPrayerTime] = useState([]);
-
-  useEffect(() => {
-    const checkPrayerTimes = () => {
-      const now = moment().seconds(0).milliseconds(0); 
-      const fajr = moment(prayerTimes.Fajr, 'HH:mm');
-      const zuhr = moment(prayerTimes.Zuhr, 'HH:mm');
-      const asr = moment(prayerTimes.Asr, 'HH:mm');
-      const isha = moment('11:40', 'HH:mm');
-      const ishablink = moment('11:20', 'HH:mm');
-      console.log(now, ishablink);
-      // Add other prayer times here...
-console.log(now.isSameOrAfter(ishablink));
-      const isNear = (now.isSameOrAfter(ishablink) && !now.isSameOrAfter(isha));
-                     // Add other prayer times here...
-console.log(isNear);
-      const isTime = now.isSameOrAfter(fajr) || now.isSameOrAfter(zuhr) || now.isSameOrAfter(asr) || now.isSameOrAfter(isha);
-                     // Add other prayer times here...
-console.log(isTime);
-      setIsNearPrayerTime(isNear);
-      setIsPrayerTime(isTime);
+function HomePage({ prayerTimes, changedprayer }) {
+    const prayerTimess = {
+      Fajr: "05:15",
+      Zuhr: "13:45",
+      Asr: "17:45",
+      Maghrib: "Sunset", // Replace with actual time if available
+      Isha: "11:58",
     };
+  
+    const [blink, setBlink] = useState({});
+    const [darken, setDarken] = useState({});
+    const [message, setMessage] = useState("");
+    const [countdown, setCountdown] = useState({});
+  
+    useEffect(() => {
+      const interval = setInterval(() => {
+        const currentTime = new Date();
+        const currentMinutes = currentTime.getHours() * 60 + currentTime.getMinutes();
+        const currentSeconds = currentMinutes * 60 + currentTime.getSeconds();
+        
+        Object.keys(prayerTimess).forEach(prayer => {
+          const timeString = prayerTimess[prayer];
+          const [hours, minutes] = timeString.split(":").map(Number);
+          const prayerMinutes = hours * 60 + minutes;
+          const prayerSeconds = prayerMinutes * 60;
+  
+          if (currentSeconds >= prayerSeconds + 180) {
+            setBlink(prev => ({ ...prev, [prayer]: false }));
+            setMessage("");
+          } else if (currentSeconds >= prayerSeconds) {
+            setBlink(prev => ({ ...prev, [prayer]: true }));
+            setMessage("It is Time for Salah");
+          } else if (currentSeconds >= prayerSeconds - 600) {
+            setBlink(prev => ({ ...prev, [prayer]: false }));
+  
+            // Calculate the countdown
+            const remainingSeconds = prayerSeconds - currentSeconds;
+            const minutesRemaining = Math.floor(remainingSeconds / 60);
+            const secondsRemaining = remainingSeconds % 60;
+            const countdownString = `${minutesRemaining}m ${secondsRemaining}s`;
+  
+            setMessage(`Prayer soon: ${countdownString}`);
+            setCountdown(prev => ({
+              ...prev,
+              [prayer]: countdownString,
+            }));
+          } else if (currentSeconds >= prayerSeconds - 900) {
+            setBlink(prev => ({ ...prev, [prayer]: true }));
+            setMessage("Time for Adhan");
+          } else {
+            setBlink(prev => ({ ...prev, [prayer]: false }));
+            setCountdown(prev => ({
+              ...prev,
+              [prayer]: "",
+            }));
+          }
+        });
+      }, 1000);
 
-    const intervalId = setInterval(checkPrayerTimes, 1000); // Check every second
-
-    return () => clearInterval(intervalId); // Clean up on component unmount
-  }, [prayerTimes]);
-
-  const timeClass = isPrayerTime ? 'red' : isNearPrayerTime ? 'blink' : '';
+      
+  
+  
+      return () => clearInterval(interval);
+    }, []);
   return (
-    <div className={`home-page ${timeClass}`}>
-      <h1>Prayer Times</h1>
-      <table class="table table-fixed table-bordered">
+    <div className={`home-page`}>
+      <div>
+      <div class="image">
+        <img src={dclogo}></img>
+      </div>
+      </div>
+      {message && <p className="message blinktext">{message}</p>}
+      <table id="prayerTimesTable"  >
     <thead>
       <tr>
         <th>Prayers</th>
-        <th>Until May 10th</th>
-        <th>From May 11th</th>
+        <th>Before {}</th>
+        <th>From {changedprayer.changedTime.nextChangeDate}</th> 
       </tr>
     </thead>
     <tbody>
 
       <tr>
-        <td>Fajr</td>
+        <td id = "prayerName">Fajr</td>
         <td>{prayerTimes.Fajr}</td>
-        <td>{prayerTimes.Fajr}</td>
+        <td>{changedprayer.changedTime.Fajr}</td>
       </tr>
 
       <tr>
-      <td>Zuhr</td>
+      <td id = "prayerName">Zuhr</td>
         <td>{prayerTimes.Zuhr}</td>
-        <td>{prayerTimes.Zuhr}</td>
+        <td>{changedprayer.changedTime.Zuhr}</td>
       </tr>
       <tr>
-      <td>Asr</td>
+      <td id = "prayerName">Asr</td>
         <td>{prayerTimes.Asr}</td>
-        <td>{prayerTimes.Asr}</td>
+        <td>{changedprayer.changedTime.Asr}</td>
       </tr>
       <tr>
-      <td>Maghrib</td>
+      <td id = "prayerName">Maghrib</td>
         <td>{prayerTimes.Maghrib}</td>
-        <td>{prayerTimes.Maghrib}</td>
+        <td>{changedprayer.changedTime.Maghrib}</td>
       </tr>
       <tr>
-      <td>Isha</td>
-        <td className={`${timeClass}`}>{prayerTimes.Isha}</td>
-        <td>{prayerTimes.Isha}</td>
+      <td id = "prayerName">Isha</td>
+        <td className={`${blink["Isha"] ? 'blink' : ''} ${darken["Isha"] ? 'darken' : ''}`}>{prayerTimes.Isha} </td>
+        <td>{changedprayer.changedTime.Isha}</td>
       </tr>
 
     </tbody>
   </table>
+
     </div>
 
   );

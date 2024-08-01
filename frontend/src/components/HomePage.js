@@ -36,7 +36,7 @@ console.log(isTime);
   return (
     <div className={`home-page ${timeClass}`}>
       <h1>Prayer Times</h1>
-      <table class="table table-fixed table-bordered">
+      <table class="table table-fixed table-bordered" id="prayerTimesTable">
     <thead>
       <tr>
         <th>Prayers</th>

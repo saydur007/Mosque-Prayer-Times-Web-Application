@@ -1,6 +1,8 @@
 .table-fixed {
-    table-layout: fixed;
-  }
+  table-layout: fixed;
+  background-color: transparent !important; 
+  color: red !important;
+}
 
   .blink {
     color: yellow;
@@ -14,5 +16,91 @@
   }
   
   .red {
-    background-color: red;
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2Famazing-blue-pattern-background-free--266697609171970717%2F&psig=AOvVaw0eKExmetJ2Ksm0WnBMcZzY&ust=1718488061475000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLjEwYWJ3IYDFQAAAAAdAAAAABAE');
   }
+.table{
+  background-color: transparent !important; 
+  color: red !important;
+}
+  .table-bordered {
+    background-color: transparent !important;
+    color: red !important; 
+  }
+.image{
+  background-color: transparent;
+}
+  /* Ensure the table occupies the entire width of the page */
+
+#prayerTimesTable {
+  
+  top: 40%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse; /* Ensures borders are not doubled */
+  background-color: transparent; 
+  color: white;
+  padding: 10px; /* Padding around the table */
+  border: 10px solid #c8a97e; /* Border similar to the image */
+  border-radius: 15px; /* Rounded corners */
+}
+
+/* Center-align text in table headers and cells */
+#prayerTimesTable th,
+#prayerTimesTable td {
+  text-align: center;
+  padding: 10px; /* Adds padding for better spacing */
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-size: 50px;
+  border: 1px solid #c8a97e;
+}
+
+#prayerTimesTable th, #prayerName{
+  font-weight: bold;
+  font-size: 50px;
+  font-family: "Times New Roman";
+}
+
+/* Ensure all columns are equal width */
+#prayerTimesTable th,
+#prayerTimesTable td {
+  width: calc(100% / 3);
+}
+
+/* Set equal row height */
+#prayerTimesTable tr {
+  height: 50px; /* Adjust as needed */
+}
+
+/* Add borders to table, headers, and cells */
+
+
+@keyframes blink {
+  50% {
+    background-color: transparent;
+  }
+}
+
+.blink {
+  animation: blink 1s step-start 0s infinite;
+}
+
+/* Darken effect */
+.darken {
+  background-color: black !important;
+}
+
+.message {
+  font-size: 40px;
+  color: white;
+  margin-top: 10px;
+}
+.blinktext {
+  animation: blinker 1s step-start 0s infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

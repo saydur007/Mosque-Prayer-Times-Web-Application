@@ -75,7 +75,7 @@ for(const months in entireData)
                 Maghrib = timecalc.calculateMaghrib(dataset.timings.Maghrib);
               }
           const FajrStart = dataset.timings.Fajr;
-          const ZuhrStart = dataset.timings.Dhuhr;
+          const ZuhrStart = dataset.timings.Dhuhr; 
           const AsrStart = dataset.timings.Asr;
           const IshaStart = dataset.timings.Isha; 
           const timingswithDate= {date, weekday,FajrStart, Fajr, ZuhrStart, Zuhr,AsrStart, Asr, Maghrib,IshaStart, Isha};

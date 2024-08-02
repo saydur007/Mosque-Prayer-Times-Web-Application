@@ -7,9 +7,9 @@ function HomePage({ prayerTimes, changedprayer }) {
     const prayerTimess = {
       Fajr: "05:15",
       Zuhr: "13:45",
-      Asr: "17:45",
-      Maghrib: "Sunset", // Replace with actual time if available
-      Isha: "11:58",
+      Asr: "18:09",
+      Maghrib: "16:40", // Replace with actual time if available
+      Isha: "16:07",
     };
   
     const [blink, setBlink] = useState({});
@@ -24,7 +24,7 @@ function HomePage({ prayerTimes, changedprayer }) {
         const currentSeconds = currentMinutes * 60 + currentTime.getSeconds();
         
         Object.keys(prayerTimess).forEach(prayer => {
-          const timeString = prayerTimess[prayer];
+          const timeString = prayerTimess["Asr"];
           const [hours, minutes] = timeString.split(":").map(Number);
           const prayerMinutes = hours * 60 + minutes;
           const prayerSeconds = prayerMinutes * 60;
@@ -79,38 +79,59 @@ function HomePage({ prayerTimes, changedprayer }) {
     <thead>
       <tr>
         <th>Prayers</th>
-        <th>Before {}</th>
-        <th>From {changedprayer.changedTime.nextChangeDate}</th> 
+        <th>Current Times</th>
+        <th>From {new Date(changedprayer.date).toLocaleString('default', { month: 'long' })} {new Date(changedprayer.date).getDay()}</th> 
       </tr>
     </thead>
     <tbody>
 
       <tr>
         <td id = "prayerName">Fajr</td>
-        <td>{prayerTimes.Fajr}</td>
-        <td>{changedprayer.changedTime.Fajr}</td>
+        <td className={`${blink["Fajr"] ? 'blink' : ''} ${darken["Fajr"] ? 'darken' : ''}`}>{prayerTimes.Fajr} am</td>
+        <td>{changedprayer.Fajr} am</td>
       </tr>
 
       <tr>
       <td id = "prayerName">Zuhr</td>
-        <td>{prayerTimes.Zuhr}</td>
-        <td>{changedprayer.changedTime.Zuhr}</td>
+        <td className={`${blink["Zuhr"] ? 'blink' : ''} ${darken["Zuhr"] ? 'darken' : ''}`}>{prayerTimes.Zuhr} pm</td>
+        <td>{changedprayer.Zuhr} pm </td>
       </tr>
       <tr>
       <td id = "prayerName">Asr</td>
-        <td>{prayerTimes.Asr}</td>
-        <td>{changedprayer.changedTime.Asr}</td>
+        <td className={`${blink["Asr"] ? 'blink' : ''} ${darken["Asr"] ? 'darken' : ''}`}>{prayerTimes.Asr} pm</td>
+        <td>{changedprayer.Asr} pm</td>
       </tr>
       <tr>
       <td id = "prayerName">Maghrib</td>
-        <td>{prayerTimes.Maghrib}</td>
-        <td>{changedprayer.changedTime.Maghrib}</td>
+        <td className={`${blink["Maghrib"] ? 'blink' : ''} ${darken["Maghrib"] ? 'darken' : ''}`}>{prayerTimes.Maghrib} pm </td>
+        <td>{changedprayer.Maghrib} pm </td>
       </tr>
       <tr>
       <td id = "prayerName">Isha</td>
-        <td className={`${blink["Isha"] ? 'blink' : ''} ${darken["Isha"] ? 'darken' : ''}`}>{prayerTimes.Isha} </td>
-        <td>{changedprayer.changedTime.Isha}</td>
+        <td className={`${blink["Isha"] ? 'blink' : ''} ${darken["Isha"] ? 'darken' : ''}`}>{prayerTimes.Isha} pm </td>
+        <td>{changedprayer.Isha} pm </td>
       </tr>
+
+    </tbody>
+
+  </table>
+  <br></br>
+  <table id="prayerTimesTable"  >
+    <thead>
+      <tr>
+        <th>Jummah Prayers</th>
+        <th>1st Prayer</th>
+        <th>2nd Prayer</th> 
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td id = "prayerName">Khutbah</td>
+        <td> 1:00 pm</td>
+        <td>2:00 pm</td>
+      </tr>
+
 
     </tbody>
   </table>

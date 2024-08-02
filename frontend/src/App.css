@@ -41,7 +41,8 @@ body {
 #scroll-container {
  
   overflow: hidden;
-  font-size: 20px;;
+  font-size: 40px;;
+  font-family: Fantasy;
 }
 
 #scroll-text {

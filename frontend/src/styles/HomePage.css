@@ -92,12 +92,12 @@
 }
 
 .message {
-  font-size: 40px;
-  color: white;
+  font-size: 60px;
+  color: yellow;
   margin-top: 10px;
 }
 .blinktext {
-  animation: blinker 1s step-start 0s infinite;
+  animation: blinker 2s step-start 0s infinite;
 }
 @keyframes blinker {
   50% {

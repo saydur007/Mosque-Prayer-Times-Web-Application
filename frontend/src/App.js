@@ -33,8 +33,9 @@ function App() {
   return (
     <div className="App">
       <HomePage prayerTimes={prayerTimes} changedprayer = {changedTime} />
+      <br></br>
       <div id="scroll-container">
-        <div id="scroll-text">This is just a test. Any donation for Muslim Media Hub. Can we start with 500?</div>
+        <div id="scroll-text">Assalamualaikum Warahmatullahi Wabarakatuh. Welcome to Dawah Centre.</div>
       </div>
     </div>
   );

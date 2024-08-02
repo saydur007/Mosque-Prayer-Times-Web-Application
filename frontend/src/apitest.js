@@ -38,6 +38,7 @@ const Maghrib = data.Maghrib;
         ) {
           nextChangeDate = formatDate(currentDate);
           changedTime = { Fajr, Zuhr, Asr, Isha, Maghrib, nextChangeDate };
+          return data;
           break;
         }
       }

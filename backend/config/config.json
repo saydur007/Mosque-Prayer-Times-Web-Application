@@ -1,10 +1,16 @@
 {
   "development": {
-    "username": "root",
-    "password": "Welcome1234",
-    "database": "mosqueprayertimes",
-    "host": "localhost",
-    "dialect": "mysql"
+    "username": "avnadmin",
+    "password": "AVNS_PhDjeoANbIQvEl6qtCA",
+    "database":"defaultdb",
+    "host": "mysql-277b95b0-mosque-prayer-times.h.aivencloud.com",
+    "port": 23980,
+    "dialect": "mysql",
+    "dialectOptions": {
+      "ssl": {
+        "rejectUnauthorized": false
+      }
+    }
   },
   "test": {
     "username": "root",

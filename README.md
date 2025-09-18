@@ -32,6 +32,7 @@ Configure environment variables:
 Create a .env file in the root directory and configure your API keys, database credentials, and other environment settings.
 
 Run the app:
+It is hosted is Https:/dawahcentre.me
 bash
 Copy
 Edit

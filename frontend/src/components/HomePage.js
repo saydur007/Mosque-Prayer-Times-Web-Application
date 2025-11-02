@@ -97,8 +97,8 @@ function HomePage({ prayerTimes, changedprayer }) {
           <tbody>
             <tr>
               <td id="prayerName">Khutbah</td>
-              <td>1:00 pm</td>
-              <td>2:00 pm</td>
+              <td>12:15 pm</td>
+              <td>1:15 pm</td>
             </tr>
           </tbody>
         </table>  }

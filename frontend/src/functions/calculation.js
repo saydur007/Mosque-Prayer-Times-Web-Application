@@ -17,15 +17,12 @@ export const convertFormat = (hours, minutes) => {
   export const calculateFajrAsr = (timeest) => {
     var time = timeest.split(' ')[0];
     var hour = Number(time.split(':')[0]);
-    var hour2 = hour;
     var min = Number(time.split(':')[1]);
     var min2 = min;
     console.log(Number(hour));
     console.log(Number(min));
-    var calculatetime = "";
     if (min2 >= 15) {
       min2 = min2 - 15;
-      hour2 += 1;
     } else {
       min2 = min2 + 45;
     }
@@ -34,7 +31,6 @@ export const convertFormat = (hours, minutes) => {
           min = min -30;
           hour +=1;
           min2 = min2 -15;
-          hour2 +=1;
       }
       else{
           min = min + 30;
@@ -42,13 +38,13 @@ export const convertFormat = (hours, minutes) => {
       }
   var reminder = min  % 15;
   console.log(reminder);
-  if (reminder == 0)
+  if (reminder === 0)
       {
           return this.convertFormat(hour, min); 
       }
   else{
       min = min + (15 - reminder);
-      if(min == 60)
+      if(min === 60)
           {
               min = 0;
               hour +=1;
@@ -56,9 +52,6 @@ export const convertFormat = (hours, minutes) => {
           return this.convertFormat(hour, min); 
           
   }
- 
-    calculatetime = convertFormat(hour2, min2);
-    return calculatetime;
   };
   
   export const calculateIsha = (timeest) => {

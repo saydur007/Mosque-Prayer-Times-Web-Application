@@ -24,7 +24,7 @@ function App() {
     const intervalId = setInterval(() => {
       fetchPrayerData();
       fetchChangedTime();
-    }, 10 * 10 * 1000);
+    }, 60 * 60 * 1000);
     return () => clearInterval(intervalId);
   }, []);
   useEffect(() => {

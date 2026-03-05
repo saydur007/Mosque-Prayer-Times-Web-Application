@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 
 const convertTo24Hour = (time) => {
   if (!time) return ''; // Return an empty string if time is undefined
 
-  const [timePart, modifier] = time.split(' ');
+  const [timePart] = time.split(' ');
   let [hours, minutes] = timePart.split(':');
 
   if (hours === '12') {
@@ -62,13 +63,13 @@ console.log(currentSeconds);
           setDarken(prayer, false);
           setMessage("");
         } else if (currentSeconds >= prayerSeconds) {
-          if(prayer =="Zuhr" && prayerTimes.weekday == "Friday"){
+          if(prayer ==="Zuhr" && prayerTimes.weekday === "Friday"){
           return;}
           setBlink(prayer, true);
           setDarken(prayer, true);
           setMessage("It is Time for Salah");
         } else if (currentSeconds >= prayerSeconds - 600) {
-          if(prayer =="Zuhr" && prayerTimes.weekday == "Friday"){
+          if(prayer ==="Zuhr" && prayerTimes.weekday === "Friday"){
             return;}
           setBlink(prayer, false);
           setDarken(prayer, false);
@@ -85,7 +86,7 @@ console.log(currentSeconds);
             [prayer]: countdownString,
           }));
         } else if (currentSeconds >= prayerSeconds - 900) {
-          if(prayer =="Zuhr" && prayerTimes.weekday == "Friday"){
+          if(prayer ==="Zuhr" && prayerTimes.weekday === "Friday"){
             return;}
           if (prayer !== "Maghrib") {
           setBlink(prayer, true);

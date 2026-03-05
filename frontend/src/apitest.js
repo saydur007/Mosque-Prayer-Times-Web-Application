@@ -1,8 +1,8 @@
-const todays = new Date();
-const years = todays.getFullYear();
-const months = todays.getMonth()+1;
-const dates= todays.getDate();
-const full_dates= years + "-" + months + "-" + dates;
+// const todays = new Date();
+// const years = todays.getFullYear();
+// const months = todays.getMonth()+1;
+// const dates= todays.getDate();
+// const full_dates= years + "-" + months + "-" + dates;
 
 export const fetchPrayerTimess = async () => {
   const prayerTimes = [];

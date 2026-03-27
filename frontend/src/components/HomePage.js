@@ -1,21 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/HomePage.css';
 import dclogo from './dc.png';
-import usePrayerTimes from '../functions/usePrayerTimes';
 function HomePage({ prayerTimes, changedprayer }) {
-
-  const { blinkFajr,
-    darkenFajr,
-    blinkZuhr,
-    darkenZuhr,
-    blinkAsr,
-    darkenAsr,
-    blinkMaghrib,
-    darkenMaghrib,
-    blinkIsha,
-    darkenIsha,
-    message,
-    countdown} = usePrayerTimes(prayerTimes);
  
  const [showJummah, setShowJummah] = useState(true);
  let time  = new Date().toLocaleTimeString()
@@ -44,41 +30,40 @@ function HomePage({ prayerTimes, changedprayer }) {
         {ctime} </div> */}
       </div>
       </div>
-      {message && <p className="message blinktext">{message}</p>}
       <table id="prayerTimesTable"  >
     <thead>
       <tr>
         <th>Prayers</th>
         <th>Jama'ah Times</th>
-        <th>From {new Date(changedprayer.date+"T00:00:00-05:00").toLocaleString('default', { month: 'long' })} {new Date(changedprayer.date+"T00:00:00-05:00").getDate() }</th> 
+        <th>From {new Date(changedprayer.date+"T00:00:00-05:00").toLocaleString('default', { month: 'long' })} {new Date(changedprayer.date+"T00:00:00-05:00").getDate() }</th>
       </tr>
     </thead>
     <tbody>
 
       <tr>
         <td id = "prayerName">Fajr</td>
-        <td className={`${blinkFajr ? 'blink' : ''} ${darkenFajr ? 'darken' : ''}`}>{prayerTimes.Fajr} am</td>
+        <td>{prayerTimes.Fajr} am</td>
         <td>{changedprayer.Fajr} am</td>
       </tr>
 
       <tr>
       <td id = "prayerName">Dhuhr</td>
-        <td className={`${blinkZuhr ? 'blink' : ''} ${darkenZuhr ? 'darken' : ''}`}>{prayerTimes.Zuhr} pm</td>
+        <td>{prayerTimes.Zuhr} pm</td>
         <td>{changedprayer.Zuhr} pm </td>
       </tr>
       <tr>
       <td id = "prayerName">Asr</td>
-        <td className={`${blinkAsr ? 'blink' : ''} ${darkenAsr ? 'darken' : ''}`}>{prayerTimes.Asr} pm</td>
+        <td>{prayerTimes.Asr} pm</td>
         <td>{changedprayer.Asr} pm</td>
       </tr>
       <tr>
       <td id = "prayerName">Maghrib</td>
-        <td className={`${blinkMaghrib ? 'blink' : ''} ${darkenMaghrib ? 'darken' : ''}`}>{prayerTimes.Maghrib} pm </td>
+        <td>{prayerTimes.Maghrib} pm </td>
         <td>{changedprayer.Maghrib} pm </td>
       </tr>
       <tr>
       <td id = "prayerName">Isha</td>
-        <td className={`${blinkIsha ? 'blink' : ''} ${darkenIsha ? 'darken' : ''}`}>{prayerTimes.Isha} pm </td>
+        <td>{prayerTimes.Isha} pm </td>
         <td>{changedprayer.Isha} pm </td>
       </tr>
 
@@ -86,7 +71,7 @@ function HomePage({ prayerTimes, changedprayer }) {
 
   </table>
   <br></br>
-  {/* {  <table id="prayerTimesTable">
+  {  <table id="prayerTimesTable">
           <thead>
             <tr>
               <th>Jumu'ah Prayers</th>
@@ -97,12 +82,12 @@ function HomePage({ prayerTimes, changedprayer }) {
           <tbody>
             <tr>
               <td id="prayerName">Khutbah</td>
-              <td>12:15 pm</td>
-              <td>1:15 pm</td>
+              <td>1:00 pm</td>
+              <td>2:00 pm</td>
             </tr>
           </tbody>
-        </table>  } */}
-    {showJummah ? (
+        </table>  }
+    {/* {showJummah ? (
         <table id="prayerTimesTable">
           <thead>
             <tr>
@@ -136,7 +121,7 @@ function HomePage({ prayerTimes, changedprayer }) {
             </tr>
           </tbody>
         </table>
-      )}  
+      )}   */}
  
     </div>
   );
